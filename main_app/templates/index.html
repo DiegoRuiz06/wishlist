@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Wish List</title>
+</head>
+
+<body>
+    <h1>Wish List Items</h1>
+    {% if item|length == 0 %}
+        <h3><hr> No Wish Items Exist</h3>
+    {% else %}
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        {% for item in items %}
+        <tbody>
+            <tr>
+                <td>{{item.description}}</td>
+                <td><a href="{% url 'items_delete' item.id %}">X</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <a href="{% url 'items_create' %}" class='pure-button'>Add Wish Item</a>
+</body>
+
+</html>
